@@ -1,9 +1,9 @@
-const mongodb = require("mongodb");
+const path = require("path");
+const router = require('express').Router();
 const mongoose = require("mongoose");
 const express = require("express");
-const Schema = mongoose.Schema; // connnects to the models file.
-
 const app = express();
+const db = require("mongojs")
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +16,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://heizi:blackberry@back
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+
+router.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "../public/index.html"));
+  });
+
+
 
 
 
