@@ -1,9 +1,10 @@
-const path = require("path");
-const router = require('express').Router();
+
 const mongoose = require("mongoose");
 const express = require("express");
-const app = express();
+const path = require("path");
+const router = require('express').Router();
 
+const app = express();
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,12 +19,17 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://heizi:blackberry@back
     useUnifiedTopology: true
 });
 
-router.get("/", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "../public/index.html"));
   });
 
+router.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname + "../public/exercise.html"));
+  });
 
-
+  router.get("/stats", (req, res) => {
+    res.sendFile(path.join(__dirname + "../public/index.html"));
+  });
 
 
 app.listen(PORT, () => {
